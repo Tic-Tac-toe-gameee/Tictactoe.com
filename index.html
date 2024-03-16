@@ -1,45 +1,211 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe - player</title>
-    <link rel="stylesheet" href="styls.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Tic Tac Toe - Multiplayer</h1>
-        <div class="controls">
-            <input type="text" id="nickname" placeholder="Enter your nickname">
-            <input type="text" id="inviteCode" placeholder="Enter invite code">
-            <button onclick="joinGame()">Join</button>
-            <button onclick="startGame()">Start</button>
-            <button onclick="resetGame()">Reset</button>
-            <label class="switch">
-                <input type="checkbox" id="darkModeCheckbox" onclick="toggleDarkMode()">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div id="playerInfo"></div>
-        <div id="board" class="board">
-            <div class="row">
-                <div class="cell" onclick="handleClick(0)"></div>
-                <div class="cell" onclick="handleClick(1)"></div>
-                <div class="cell" onclick="handleClick(2)"></div>
-            </div>
-            <div class="row">
-                <div class="cell" onclick="handleClick(3)"></div>
-                <div class="cell" onclick="handleClick(4)"></div>
-                <div class="cell" onclick="handleClick(5)"></div>
-            </div>
-            <div class="row">
-                <div class="cell" onclick="handleClick(6)"></div>
-                <div class="cell" onclick="handleClick(7)"></div>
-                <div class="cell" onclick="handleClick(8)"></div>
-            </div>
-        </div>
-        <div id="message" class="message"></div>
-    </div>
-    <script src="index.js"></script>
-</body>
-</html>
+<div class="title">Tic-Tac-Toe<div class="sub-title">Powered by shouhailyt</div></div>
+
+
+<!-- Playing table -->
+<div id="playing-table" class="container">
+  
+  <table id="ai-board" class="table table-bordered">
+  
+    <tr>
+      <td id="c00"></td>
+      <td id="c01"></td>
+      <td id="c02"></td>
+    </tr>
+    
+    <tr>
+      <td id="c10"></td>
+      <td id="c11"></td>
+      <td id="c12"></td>
+    </tr>
+    
+    <tr>
+      <td id="c20"></td>
+      <td id="c21"></td>
+      <td id="c22"></td>
+    </tr>
+  
+  </table>
+
+  <div id="pvp-board">
+  <div class="row">
+    <div id="s1" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s2" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s3" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+  </div>
+  
+  <div class="row">
+    <div id="s4" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s5" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s6" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+  </div>
+  
+  <div class="row">
+    <div id="s7" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s8" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s9" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+  </div>
+  </div>
+
+  <!-- Number of players -->
+<div id="number-players" class="container">
+  <div>Gameplay:</div><br>
+  <div><button id="pvc" class="btn gameplay">Player vs CPU</button></div><br><div><button id="pvp" class="btn gameplay">Player vs Player</button></div>
+</div>
+  
+</div> <!-- End of table -->
+
+
+<!-- Player 1 Turn -->
+<div id="player1-container" class="container">
+
+  <div id="player1-turn" class="player1-name">Player 1</div>
+
+</div>
+
+<!-- Player 2 Turn -->
+<div id="player2-container" class="container">
+
+  <div id="player2-turn" class="player2-name">Player 2</div>
+
+</div>
+
+<!-- Scorecard -->
+<div id="scorecard-container" class="container">
+  
+  <div class="row scores">
+    <div class="col-xs-4 col-md-4 col-lg-4"><span id="player1-name">Player 1</span><br><span id="player1-score">0</span></div>
+    <div class="col-xs-4 col-md-4 col-lg-4">Draw<br><span id="tie-games">0</span></div>
+    <div class="col-xs-4 col-md-4 col-lg-4"><span id="player2-name">Player 2</span><br><span id="player2-score">0</span></div>
+  </div>
+  
+</div>
+
+<!-- Reset -->
+<div id="reset-container" class="container">
+
+  <div class="row reset-label">
+    <div><a id="reset">Reset</a></div>
+  </div>
+
+</div>
+
+<!-- Hidden after-game message -->
+<div id="message-container" class="container">
+
+  <div id="message"></div>
+  <div><button id="play-again" class="btn btn-primary">Play Again?</button></div>
+
+</div>
+
+<!-- Choose player -->
+<div id="start-container" class="container">
+  
+  <div class="player-choice-header">Player 1: Choose your mark:</div>
+  <div class="player-choice"><button id="playerX" class="btn btn-lg">X</button>&nbsp;<button id="playerO" class="btn btn-lg">O</button></div>
+  
+  </div>Javascript</div></div>
+
+
+<!-- Playing table -->
+<div id="playing-table" class="container">
+  
+  <table id="ai-board" class="table table-bordered">
+  
+    <tr>
+      <td id="c00"></td>
+      <td id="c01"></td>
+      <td id="c02"></td>
+    </tr>
+    
+    <tr>
+      <td id="c10"></td>
+      <td id="c11"></td>
+      <td id="c12"></td>
+    </tr>
+    
+    <tr>
+      <td id="c20"></td>
+      <td id="c21"></td>
+      <td id="c22"></td>
+    </tr>
+  
+  </table>
+
+  <div id="pvp-board">
+  <div class="row">
+    <div id="s1" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s2" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s3" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+  </div>
+  
+  <div class="row">
+    <div id="s4" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s5" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s6" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+  </div>
+  
+  <div class="row">
+    <div id="s7" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s8" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+    <div id="s9" class="col-xs-6 col-md-4 col-lg-2 square"></div> 
+  </div>
+  </div>
+
+  <!-- Number of players -->
+<div id="number-players" class="container">
+  <div>Gameplay:</div><br>
+  <div><button id="pvc" class="btn gameplay">Player vs CPU</button></div><br><div><button id="pvp" class="btn gameplay">Player vs Player</button></div>
+</div>
+  
+</div> <!-- End of table -->
+
+
+<!-- Player 1 Turn -->
+<div id="player1-container" class="container">
+
+  <div id="player1-turn" class="player1-name">Player 1</div>
+
+</div>
+
+<!-- Player 2 Turn -->
+<div id="player2-container" class="container">
+
+  <div id="player2-turn" class="player2-name">Player 2</div>
+
+</div>
+
+<!-- Scorecard -->
+<div id="scorecard-container" class="container">
+  
+  <div class="row scores">
+    <div class="col-xs-4 col-md-4 col-lg-4"><span id="player1-name">Player 1</span><br><span id="player1-score">0</span></div>
+    <div class="col-xs-4 col-md-4 col-lg-4">Draw<br><span id="tie-games">0</span></div>
+    <div class="col-xs-4 col-md-4 col-lg-4"><span id="player2-name">Player 2</span><br><span id="player2-score">0</span></div>
+  </div>
+  
+</div>
+
+<!-- Reset -->
+<div id="reset-container" class="container">
+
+  <div class="row reset-label">
+    <div><a id="reset">Reset</a></div>
+  </div>
+
+</div>
+
+<!-- Hidden after-game message -->
+<div id="message-container" class="container">
+
+  <div id="message"></div>
+  <div><button id="play-again" class="btn btn-primary">Play Again?</button></div>
+
+</div>
+
+<!-- Choose player -->
+<div id="start-container" class="container">
+  
+  <div class="player-choice-header">Player 1: Choose your mark:</div>
+  <div class="player-choice"><button id="playerX" class="btn btn-lg">X</button>&nbsp;<button id="playerO" class="btn btn-lg">O</button></div>
+  
+</div>
